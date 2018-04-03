@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditStudTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditStudLabel_idStud}" for="idStud" />
+                    <h:inputText id="idStud" value="#{studController.selected.idStud}" title="#{bundle.EditStudTitle_idStud}" required="true" requiredMessage="#{bundle.EditStudRequiredMessage_idStud}"/>
+                    <h:outputLabel value="#{bundle.EditStudLabel_firstName}" for="firstName" />
+                    <h:inputText id="firstName" value="#{studController.selected.firstName}" title="#{bundle.EditStudTitle_firstName}" />
+                    <h:outputLabel value="#{bundle.EditStudLabel_surName}" for="surName" />
+                    <h:inputText id="surName" value="#{studController.selected.surName}" title="#{bundle.EditStudTitle_surName}" />
+                    <h:outputLabel value="#{bundle.EditStudLabel_patronymic}" for="patronymic" />
+                    <h:inputText id="patronymic" value="#{studController.selected.patronymic}" title="#{bundle.EditStudTitle_patronymic}" />
+                    <h:outputLabel value="#{bundle.EditStudLabel_course}" for="course" />
+                    <h:inputText id="course" value="#{studController.selected.course}" title="#{bundle.EditStudTitle_course}" />
+                    <h:outputLabel value="#{bundle.EditStudLabel_gr}" for="gr" />
+                    <h:selectOneMenu id="gr" value="#{studController.selected.gr}" title="#{bundle.EditStudTitle_gr}" >
+                        <f:selectItems value="#{grController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{studController.update}" value="#{bundle.EditStudSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditStudViewLink}"/>
+                <br />
+                <h:commandLink action="#{studController.prepareList}" value="#{bundle.EditStudShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditStudIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

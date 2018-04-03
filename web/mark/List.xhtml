@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMarkTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListMarkEmpty}" rendered="#{markController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{markController.items.rowCount > 0}">
+                    <h:outputText value="#{markController.pagination.pageFirstItem + 1}..#{markController.pagination.pageLastItem + 1}/#{markController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{markController.previous}" value="#{bundle.Previous} #{markController.pagination.pageSize}" rendered="#{markController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{markController.next}" value="#{bundle.Next} #{markController.pagination.pageSize}" rendered="#{markController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{markController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMarkTitle_idMark}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMark}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMarkTitle_mark}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mark}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMarkTitle_date}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMarkTitle_student}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.student.getFIO()}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMarkTitle_subject}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subject.getName()}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{markController.prepareView}" value="#{bundle.ListMarkViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{markController.prepareEdit}" value="#{bundle.ListMarkEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{markController.destroy}" value="#{bundle.ListMarkDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{markController.prepareCreate}" value="#{bundle.ListMarkCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListMarkIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

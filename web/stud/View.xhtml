@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewStudTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                 
+                <h:panelGrid columns="2">
+                   
+                    <h:outputText value="#{bundle.ViewStudLabel_idStud}"/>
+                    <h:outputText value="#{studController.selected.idStud}" title="#{bundle.ViewStudTitle_idStud}"/>
+                    <h:outputText value="#{bundle.ViewStudLabel_firstName}"/>
+                    <h:outputText value="#{studController.selected.firstName}" title="#{bundle.ViewStudTitle_firstName}"/>
+                    <h:outputText value="#{bundle.ViewStudLabel_surName}"/>
+                    <h:outputText value="#{studController.selected.surName}" title="#{bundle.ViewStudTitle_surName}"/>
+                    <h:outputText value="#{bundle.ViewStudLabel_patronymic}"/>
+                    <h:outputText value="#{studController.selected.patronymic}" title="#{bundle.ViewStudTitle_patronymic}"/>
+                    <h:outputText value="#{bundle.ViewStudLabel_course}"/>
+                    <h:outputText value="#{studController.selected.course}" title="#{bundle.ViewStudTitle_course}"/>
+                    <h:outputText value="#{bundle.ViewStudLabel_gr}"/>
+                    <h:outputText value="#{studController.selected.gr}" title="#{bundle.ViewStudTitle_gr}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{studController.destroyAndView}" value="#{bundle.ViewStudDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewStudEditLink}"/>
+                <br />
+                <h:commandLink action="#{studController.prepareCreate}" value="#{bundle.ViewStudCreateLink}" />
+                <br />
+                <h:commandLink action="#{studController.prepareList}" value="#{bundle.ViewStudShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewStudIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
