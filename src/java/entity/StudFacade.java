@@ -29,12 +29,15 @@ public class StudFacade extends AbstractFacade<Stud> {
         return em;
         
     }
-    public Collection<Stud> getIndebtStud(){
-      Query q2=em.createQuery("SELECT s From Stud s Where s in(Select m.student From Mark m Where m.mark<4 )");
+    public Collection<Stud> getIndebtStud(Integer gr){
+      Query q2=em.createQuery("Select s From Stud s Where s.gr.idGroup=:gr");
+      q2.setParameter("gr",gr);
       Collection<Stud> st= q2.getResultList(); 
-      System.out.print(st);
+      System.out.println(st);
       return st;
+   
     }
+    
     public void Course(){
   
     Query q=em.createQuery("UPDATE Stud s SET s.course = s.course+1 Where s.course<>5 and s in(Select m.student From Mark m Where m.mark>=4 )");
@@ -44,6 +47,13 @@ public class StudFacade extends AbstractFacade<Stud> {
 
     public StudFacade() {
         super(Stud.class);
+    }
+    
+    public List<Stud> FindStud(String findStr){
+        Query sel = em.createQuery("FROM Stud s WHERE s.firstName LIKE :findStr or s.surName LIKE :findStr"); 
+        sel.setParameter("findStr", "%"+findStr+"%"); 
+        System.out.println(sel.getResultList());
+        return sel.getResultList();
     }
     
     

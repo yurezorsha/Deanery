@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -21,13 +22,13 @@
                     <h:inputText id="name" value="#{grController.selected.name}" title="#{bundle.CreateGrTitle_name}" />
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{grController.create}" value="#{bundle.CreateGrSaveLink}" />
+                <p:commandButton action="#{grController.create}" value="#{bundle.CreateGrSaveLink}" />
                 <br />
                 <br />
-                <h:commandLink action="#{grController.prepareList}" value="#{bundle.CreateGrShowAllLink}" immediate="true"/>
+                <p:commandButton action="#{grController.prepareList}" value="#{bundle.CreateGrShowAllLink}" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.CreateGrIndexLink}"/>
+                <p:button outcome="/index" value="#{bundle.CreateGrIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

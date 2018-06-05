@@ -5,9 +5,11 @@
  */
 package entity;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +28,13 @@ public class GrFacade extends AbstractFacade<Gr> {
 
     public GrFacade() {
         super(Gr.class);
+    }
+    
+    public List<Gr> FindGr(String findStr){
+        Query sel = em.createQuery("FROM Gr g WHERE g.name LIKE :findStr"); 
+        sel.setParameter("findStr", "%"+findStr+"%"); 
+        return sel.getResultList();
+        
     }
     
 }

@@ -4,6 +4,10 @@ import entity.util.JsfUtil;
 import entity.util.PaginationHelper;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -15,10 +19,13 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.primefaces.context.RequestContext;
+import search.IFind;
+
 
 @Named("studController")
 @SessionScoped
-public class StudController implements Serializable {
+public class StudController implements Serializable,IFind {
 
     private Stud current;
     private DataModel items = null;
@@ -59,7 +66,8 @@ public class StudController implements Serializable {
         }
         return pagination;
     }
-
+    
+    
     public String prepareList() {
         recreateModel();
         return "List";
@@ -114,9 +122,33 @@ public class StudController implements Serializable {
         recreateModel();
         return "List";
     }
+    
+    public void showStudonGroup(){
+     int  gr=current.getGr().getIdGroup();
+     System.out.println("abc");
+     Collection<Stud> lst =ejbFacade.getIndebtStud(gr);
+       recreateModel();
+        items = new ListDataModel((List) lst);
+        //return "List";
+    }
+    
+    public void showOneGroup() {
+        showStudonGroup();
+        Map<String,Object> options = new HashMap<String, Object>();
+           options.put("modal", true);
+           options.put("draggable", false);
+           options.put("resizable", false);
+           options.put("contentHeight", 500);
+           options.put("contentWidth", 700);
+
+         RequestContext.getCurrentInstance().openDialog("ViewOneGroup", options, null);
+        
+    }
+            
+            
     public String UpCourse() {
         ejbFacade.Course();
-        ejbFacade.getIndebtStud();
+        
         recreateModel();
     return "List";    
     }
@@ -195,6 +227,18 @@ public class StudController implements Serializable {
 
     public Stud getStud(java.lang.Integer id) {
         return ejbFacade.find(id);
+    }
+
+    @Override
+    public void prepareDestroy() {
+        getFacade().remove(current); 
+        recreatePagination(); 
+        recreateModel();
+    }
+
+    @Override
+    public void setCurrentself(Object o) {
+        current = (Stud) o; 
     }
 
     @FacesConverter(forClass = Stud.class)

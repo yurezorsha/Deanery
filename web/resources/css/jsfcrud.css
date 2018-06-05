@@ -21,6 +21,9 @@ a {
 table {
     empty-cells: show;
 }
+.recordLabel {
+    font-weight:bold;
+}
 
 form.jsfcrud_list_form th, td th {
     font-size: x-small;

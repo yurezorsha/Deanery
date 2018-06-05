@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -29,17 +30,17 @@
                     <h:outputText value="#{markController.selected.subject}" title="#{bundle.ViewMarkTitle_subject}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{markController.destroyAndView}" value="#{bundle.ViewMarkDestroyLink}"/>
+                <p:commandButton action="#{markController.destroyAndView}" value="#{bundle.ViewMarkDestroyLink}"/>
                 <br />
                 <br />
-                <h:link outcome="Edit" value="#{bundle.ViewMarkEditLink}"/>
+                <p:button outcome="Edit" value="#{bundle.ViewMarkEditLink}"/>
                 <br />
-                <h:commandLink action="#{markController.prepareCreate}" value="#{bundle.ViewMarkCreateLink}" />
+                <p:commandButton action="#{markController.prepareCreate}" value="#{bundle.ViewMarkCreateLink}" />
                 <br />
-                <h:commandLink action="#{markController.prepareList}" value="#{bundle.ViewMarkShowAllLink}"/>
+                <p:commandButton action="#{markController.prepareList}" value="#{bundle.ViewMarkShowAllLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ViewMarkIndexLink}"/>
+                <p:button outcome="/index" value="#{bundle.ViewMarkIndexLink}"/>
 
             </h:form>
         </ui:define>

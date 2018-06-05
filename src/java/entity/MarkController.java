@@ -110,7 +110,8 @@ public class MarkController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
-        recreateModel();
+        recreateModel();      
+        prepareList();
         return "List";
     }
 

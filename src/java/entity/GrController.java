@@ -15,10 +15,11 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import search.IFind;
 
 @Named("grController")
 @SessionScoped
-public class GrController implements Serializable {
+public class GrController implements Serializable, IFind {
 
     private Gr current;
     private DataModel items = null;
@@ -188,6 +189,18 @@ public class GrController implements Serializable {
 
     public Gr getGr(java.lang.Integer id) {
         return ejbFacade.find(id);
+    }
+
+    @Override
+    public void prepareDestroy() {
+        getFacade().remove(current); 
+        recreatePagination(); 
+        recreateModel();
+    }
+
+    @Override
+    public void setCurrentself(Object o) {
+        current = (Gr) o;
     }
 
     @FacesConverter(forClass = Gr.class)

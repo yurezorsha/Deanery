@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -21,17 +22,17 @@
                     <h:outputText value="#{grController.selected.name}" title="#{bundle.ViewGrTitle_name}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{grController.destroyAndView}" value="#{bundle.ViewGrDestroyLink}"/>
+                <p:commandButton action="#{grController.destroyAndView}" value="#{bundle.ViewGrDestroyLink}"/>
                 <br />
                 <br />
-                <h:link outcome="Edit" value="#{bundle.ViewGrEditLink}"/>
+                <p:button outcome="Edit" value="#{bundle.ViewGrEditLink}"/>
                 <br />
-                <h:commandLink action="#{grController.prepareCreate}" value="#{bundle.ViewGrCreateLink}" />
+                <p:commandButton action="#{grController.prepareCreate}" value="#{bundle.ViewGrCreateLink}" />
                 <br />
-                <h:commandLink action="#{grController.prepareList}" value="#{bundle.ViewGrShowAllLink}"/>
+                <p:commandButton action="#{grController.prepareList}" value="#{bundle.ViewGrShowAllLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ViewGrIndexLink}"/>
+                <h:button outcome="/index" value="#{bundle.ViewGrIndexLink}"/>
 
             </h:form>
         </ui:define>

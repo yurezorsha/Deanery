@@ -5,9 +5,11 @@
  */
 package entity;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +28,12 @@ public class SubjectFacade extends AbstractFacade<Subject> {
 
     public SubjectFacade() {
         super(Subject.class);
+    }
+    
+    public List<Subject> FindSubject(String findStr){
+        Query sel = em.createQuery("FROM Subject s WHERE s.name LIKE :findStr "); 
+        sel.setParameter("findStr", "%"+findStr+"%"); 
+        return sel.getResultList();
     }
     
 }

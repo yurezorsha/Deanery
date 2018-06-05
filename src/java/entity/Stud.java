@@ -5,6 +5,9 @@
  */
 package entity;
 
+
+
+
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -17,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -37,8 +41,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Stud.findByPatronymic", query = "SELECT s FROM Stud s WHERE s.patronymic = :patronymic")
     , @NamedQuery(name = "Stud.findByCourse", query = "SELECT s FROM Stud s WHERE s.course = :course")})
 public class Stud implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
+    @Transient
+    private boolean a;
     @Id
     @Basic(optional = false)
     @NotNull

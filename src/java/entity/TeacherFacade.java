@@ -5,9 +5,11 @@
  */
 package entity;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,4 +30,10 @@ public class TeacherFacade extends AbstractFacade<Teacher> {
         super(Teacher.class);
     }
     
+    public List<Teacher> FindTeacher(String findStr){
+        Query sel = em.createQuery("FROM Teacher s WHERE s.firstName LIKE :findStr or s.surName LIKE :findStr"); 
+        sel.setParameter("findStr", "%"+findStr+"%"); 
+        System.out.println(sel.getResultList());
+        return sel.getResultList();
+    }
 }

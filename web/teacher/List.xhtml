@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -48,19 +49,19 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{teacherController.prepareView}" value="#{bundle.ListTeacherViewLink}"/>
+                            <p:commandButton action="#{teacherController.prepareView}" value="#{bundle.ListTeacherViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{teacherController.prepareEdit}" value="#{bundle.ListTeacherEditLink}"/>
+                            <p:commandButton action="#{teacherController.prepareEdit}" value="#{bundle.ListTeacherEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{teacherController.destroy}" value="#{bundle.ListTeacherDestroyLink}"/>
+                            <p:commandButton action="#{teacherController.destroy}" value="#{bundle.ListTeacherDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{teacherController.prepareCreate}" value="#{bundle.ListTeacherCreateLink}"/>
+                <p:commandButton action="#{teacherController.prepareCreate}" value="#{bundle.ListTeacherCreateLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ListTeacherIndexLink}"/>
+                <p:button outcome="/index" value="#{bundle.ListTeacherIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

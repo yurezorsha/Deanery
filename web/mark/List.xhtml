@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -56,19 +57,19 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{markController.prepareView}" value="#{bundle.ListMarkViewLink}"/>
+                            <p:commandButton action="#{markController.prepareView}" value="#{bundle.ListMarkViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{markController.prepareEdit}" value="#{bundle.ListMarkEditLink}"/>
+                            <p:commandButton action="#{markController.prepareEdit}" value="#{bundle.ListMarkEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{markController.destroy}" value="#{bundle.ListMarkDestroyLink}"/>
+                            <p:commandButton action="#{markController.destroy}" value="#{bundle.ListMarkDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{markController.prepareCreate}" value="#{bundle.ListMarkCreateLink}"/>
+                <p:commandButton action="#{markController.prepareCreate}" value="#{bundle.ListMarkCreateLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ListMarkIndexLink}"/>
+                <p:button outcome="/index" value="#{bundle.ListMarkIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

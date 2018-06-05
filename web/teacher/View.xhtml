@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -25,17 +26,17 @@
                     <h:outputText value="#{teacherController.selected.patronymic}" title="#{bundle.ViewTeacherTitle_patronymic}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{teacherController.destroyAndView}" value="#{bundle.ViewTeacherDestroyLink}"/>
+                <p:commandButton action="#{teacherController.destroyAndView}" value="#{bundle.ViewTeacherDestroyLink}"/>
                 <br />
                 <br />
-                <h:link outcome="Edit" value="#{bundle.ViewTeacherEditLink}"/>
+                <p:button outcome="Edit" value="#{bundle.ViewTeacherEditLink}"/>
                 <br />
-                <h:commandLink action="#{teacherController.prepareCreate}" value="#{bundle.ViewTeacherCreateLink}" />
+                <p:commandButton action="#{teacherController.prepareCreate}" value="#{bundle.ViewTeacherCreateLink}" />
                 <br />
-                <h:commandLink action="#{teacherController.prepareList}" value="#{bundle.ViewTeacherShowAllLink}"/>
+                <p:commandButton action="#{teacherController.prepareList}" value="#{bundle.ViewTeacherShowAllLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ViewTeacherIndexLink}"/>
+                <p:button outcome="/index" value="#{bundle.ViewTeacherIndexLink}"/>
 
             </h:form>
         </ui:define>

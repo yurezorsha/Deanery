@@ -15,10 +15,11 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import search.IFind;
 
 @Named("subjectController")
 @SessionScoped
-public class SubjectController implements Serializable {
+public class SubjectController implements Serializable,IFind {
 
     private Subject current;
     private DataModel items = null;
@@ -188,6 +189,18 @@ public class SubjectController implements Serializable {
 
     public Subject getSubject(java.lang.Integer id) {
         return ejbFacade.find(id);
+    }
+
+    @Override
+    public void prepareDestroy() {
+        getFacade().remove(current); 
+        recreatePagination(); 
+        recreateModel();
+    }
+
+    @Override
+    public void setCurrentself(Object o) {
+        current = (Subject) o;
     }
 
     @FacesConverter(forClass = Subject.class)

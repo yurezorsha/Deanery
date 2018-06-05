@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -30,15 +31,15 @@
                         <f:selectItems value="#{grController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
-                <h:commandLink action="#{studController.update}" value="#{bundle.EditStudSaveLink}"/>
+                <p:commandButton action="#{studController.update}" value="#{bundle.EditStudSaveLink}"/>
                 <br />
                 <br />
-                <h:link outcome="View" value="#{bundle.EditStudViewLink}"/>
+                <p:button outcome="View" value="#{bundle.EditStudViewLink}"/>
                 <br />
-                <h:commandLink action="#{studController.prepareList}" value="#{bundle.EditStudShowAllLink}" immediate="true"/>
+                <p:commandButton action="#{studController.prepareList}" value="#{bundle.EditStudShowAllLink}" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.EditStudIndexLink}" />
+                <p:button outcome="/index" value="#{bundle.EditStudIndexLink}" />
             </h:form>
         </ui:define>
     </ui:composition>

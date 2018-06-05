@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
      
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/template2.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListStudTitle}"></h:outputText>
         </ui:define>
@@ -23,12 +23,7 @@
             <h:form styleClass="jsfcrud_list_form">
                 
             
-                <h:commandButton action="#{studController.UpCourse()}" title="#{bundle.UpCourse}" value="#{bundle.UpCourse}"></h:commandButton>
-                <h:selectOneMenu id="gr" value="#{studController.selected.gr}" title="#{bundle.EditStudTitle_gr}" >
-                        <f:selectItems value="#{grController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                <h:commandButton actionListener="#{studController.showOneGroup()}" value="Show Group">
-                </h:commandButton>
+               
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
@@ -37,44 +32,44 @@
                     <h:outputText value="#{studController.pagination.pageFirstItem + 1}..#{studController.pagination.pageLastItem + 1}/#{studController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{studController.previous}" value="#{bundle.Previous} #{studController.pagination.pageSize}" rendered="#{studController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{studController.next}" value="#{bundle.Next} #{studController.pagination.pageSize}" rendered="#{studController.pagination.hasNextPage}"/>&nbsp;
-                    <p:dataTable id="St" value="#{studController.items}" var="item"    style="border:solid 1px">
-                        <p:column>
+                    <h:dataTable value="#{studController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListStudTitle_idStud}"/>
                             </f:facet>
                             <h:outputText value="#{item.idStud}"/>
-                        </p:column>
-                        <p:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListStudTitle_firstName}"/>
                             </f:facet>
                             <h:outputText value="#{item.firstName}"/>
-                        </p:column>
-                        <p:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListStudTitle_surName}"/>
                             </f:facet>
                             <h:outputText value="#{item.surName}"/>
-                        </p:column>
-                        <p:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListStudTitle_patronymic}"/>
                             </f:facet>
                             <h:outputText value="#{item.patronymic}"/>
-                        </p:column>
-                        <p:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListStudTitle_course}"/>
                             </f:facet>
                             <h:outputText value="#{item.course}"/>
-                        </p:column>
-                        <p:column width="100">
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListStudTitle_gr}"/>
                             </f:facet>
                             <h:outputText value="#{item.gr.getName()}"/>
-                        </p:column>
-                        <p:column width="250">
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
@@ -82,21 +77,18 @@
                             <h:outputText value=" "/>
                             <p:commandButton  action="#{studController.prepareEdit}" value="#{bundle.ListStudEditLink}"/>
                             <h:outputText value=""/>
-                            <p:commandButton update="St" action="#{studController.destroy()}" value="#{bundle.ListStudDestroyLink}">
+                            <p:commandButton action="#{studController.destroy()}" value="#{bundle.ListStudDestroyLink}">
                                 <p:confirm header="Confirmation" message="Are you sure?" />
                             
                             </p:commandButton>
-                        </p:column>
-                    </p:dataTable>
+                        </h:column>
+                    </h:dataTable>
                 </h:panelGroup>
                 <br />
                 <p:commandButton  action="#{studController.prepareCreate}" value="#{bundle.ListStudCreateLink}"/>
                 <br />
-                <br />
-              
-                <br />
-                <br />
-                <p:button outcome="/index" value="#{bundle.ListStudIndexLink}"/>
+               
+    
             </h:form>
         </ui:define>
     </ui:composition>

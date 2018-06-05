@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -32,15 +33,15 @@
                         <f:selectItems value="#{subjectController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
-                <h:commandLink action="#{markController.update}" value="#{bundle.EditMarkSaveLink}"/>
+                <p:commandButton action="#{markController.update}" value="#{bundle.EditMarkSaveLink}"/>
                 <br />
                 <br />
-                <h:link outcome="View" value="#{bundle.EditMarkViewLink}"/>
+                <p:button outcome="View" value="#{bundle.EditMarkViewLink}"/>
                 <br />
-                <h:commandLink action="#{markController.prepareList}" value="#{bundle.EditMarkShowAllLink}" immediate="true"/>
+                <p:commandButton action="#{markController.prepareList}" value="#{bundle.EditMarkShowAllLink}" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.EditMarkIndexLink}" />
+                <p:button outcome="/index" value="#{bundle.EditMarkIndexLink}" />
             </h:form>
         </ui:define>
     </ui:composition>

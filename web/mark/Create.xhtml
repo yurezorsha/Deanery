@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,15 +15,15 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
+                <p:growl id="growl" showDetail="true" />
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateMarkLabel_idMark}" for="idMark" />
                     <h:inputText id="idMark" value="#{markController.selected.idMark}" title="#{bundle.CreateMarkTitle_idMark}" required="true" requiredMessage="#{bundle.CreateMarkRequiredMessage_idMark}"/>
                     <h:outputLabel value="#{bundle.CreateMarkLabel_mark}" for="mark" />
-                    <h:inputText id="mark" value="#{markController.selected.mark}" title="#{bundle.CreateMarkTitle_mark}" />
+                    <h:inputText  id="mark" value="#{markController.selected.mark}" title="#{bundle.CreateMarkTitle_mark}" ><f:validator validatorId="ValidMark" /></h:inputText>
                     <h:outputLabel value="#{bundle.CreateMarkLabel_date}" for="date" />
-                    <h:inputText id="date" value="#{markController.selected.date}" title="#{bundle.CreateMarkTitle_date}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
+                    <p:calendar id="date" pattern="MM/dd/yyyy" value="#{markController.selected.date}"><f:convertDateTime pattern="MM/dd/yyyy" /></p:calendar>
+                    
                     <h:outputLabel value="#{bundle.CreateMarkLabel_student}" for="student" />
                     <h:selectOneMenu id="student" value="#{markController.selected.student}" title="#{bundle.CreateMarkTitle_student}" >
                         <f:selectItems value="#{studController.itemsAvailableSelectOne}"/>
@@ -33,13 +34,13 @@
                     </h:selectOneMenu>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{markController.create}" value="#{bundle.CreateMarkSaveLink}" />
+                <p:commandButton   action="#{markController.create}" value="#{bundle.CreateMarkSaveLink}" update="growl"/>
                 <br />
                 <br />
-                <h:commandLink action="#{markController.prepareList}" value="#{bundle.CreateMarkShowAllLink}" immediate="true"/>
+                <p:commandButton  action="#{markController.prepareList}" value="#{bundle.CreateMarkShowAllLink}" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.CreateMarkIndexLink}"/>
+                <p:button outcome="/index" value="#{bundle.CreateMarkIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

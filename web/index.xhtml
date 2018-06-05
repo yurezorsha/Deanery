@@ -2,32 +2,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet  name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
         
-        Hello from Facelets
-     
+        <p:tabMenu>
+    <p:menuitem outcome="/gr/List" value="Show All Gr Items"/>
+    <p:menuitem outcome="/mark/List" value="Show All Mark Items"/>
+    <p:menuitem outcome="/stud/List" value="Show All Stud Items"/>
+    <p:menuitem outcome="/subject/List" value="Show All Subject Items"/>
+    <p:menuitem outcome="/teacher/List" value="Show All Teacher Items"/>
+  </p:tabMenu>
+                   
         
-        <br />
-        <div id="top">
-        <table id="top" border="1">
-            <td><h:link outcome="/gr/List" value="Show All Gr Items"/></td>
         
-        <td><h:link outcome="/mark/List" value="Show All Mark Items"/></td>
+        
     
-        <td><h:link outcome="/stud/List" value="Show All Stud Items"/></td>
-        
-        <td><h:link outcome="/subject/List" value="Show All Subject Items"/></td>
-        
-        <td><h:link outcome="/teacher/List" value="Show All Teacher Items"/></td>
-        </table>
-             </div>
-     
-            
        
     </h:body>
 

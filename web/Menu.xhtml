@@ -7,27 +7,30 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <head>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-         <ui:composition>
-        <br />
-        <div id="top">
-        <table id="top" border="1">
-            <td><h:link outcome="/gr/List" value="Show All Gr Items"/></td>
-        
-        <td><h:link outcome="/mark/List" value="Show All Mark Items"/></td>
+    </h:head>
+    <h:body>
+               
+        <h:form>     
+  <p:tabMenu>
+    <p:menuitem outcome="/gr/List" value="Show All Gr Items"/>
+    <p:menuitem outcome="/mark/List" value="Show All Mark Items"/>
+    <p:menuitem outcome="/stud/List" value="Show All Stud Items"/>
+    <p:menuitem outcome="/subject/List" value="Show All Subject Items"/>
+    <p:menuitem outcome="/teacher/List" value="Show All Teacher Items"/>
     
-        <td><h:link outcome="/stud/List" value="Show All Stud Items"/></td>
-        
-        <td><h:link outcome="/subject/List" value="Show All Subject Items"/></td>
-        
-        <td><h:link outcome="/teacher/List" value="Show All Teacher Items"/></td>
-        </table>
-             </div>
-        </ui:composition>
-    </body>
+  </p:tabMenu>
+           
+
+            <h:outputText  value="#{bundle.Search}" styleClass="recordLabel" /><p:inputText id="find" value="#{FindCtrl.findStr}" /> 
+<p:commandButton action="#{FindCtrl.goFind()}" value="Find" />
+
+    
+     </h:form>        
+    </h:body>
 </html>
